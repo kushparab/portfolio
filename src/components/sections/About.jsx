@@ -1,6 +1,7 @@
 import { AnimatedContent } from '../../components/reactbits'
 import { INTERESTS, PERSONAL_INTERESTS } from '../../data/site'
 import { Section, Chip } from './shared'
+import { ShapeMorph } from '../fx'
 
 const SUMMARY =
   'Kush Parab is an aspiring AI/ML developer focused on building intelligent applications using Python, machine learning, deep learning, computer vision, and modern AI technologies. He combines software development with AI experimentation to create practical solutions for real-world problems.'
@@ -13,6 +14,7 @@ export default function About() {
       kicker="Profile"
       title="About Me"
       desc="A quick look at who I am, what I work on, and where I'm headed."
+      fx={<ShapeMorph className="opacity-70" />}
     >
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="space-y-5 text-[15.5px] leading-relaxed text-mute">

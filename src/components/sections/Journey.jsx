@@ -1,6 +1,7 @@
 import { FadeContent, AnimatedContent } from '../../components/reactbits'
 import { EDUCATION, EXPERIENCE } from '../../data/site'
 import { Section } from './shared'
+import { RandomShapes } from '../fx'
 
 export default function Journey() {
   return (
@@ -10,6 +11,7 @@ export default function Journey() {
       kicker="Background"
       title="Education & Experience"
       desc="My academic foundation and the journey so far — with space to grow as new opportunities come in."
+      fx={<RandomShapes count={7} seed="journey" className="opacity-50" />}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-6">

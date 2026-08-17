@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { motion } from 'motion/react'
 import { NAV_LINKS, SITE } from '../data/site'
 import { Magnet } from './reactbits'
 
@@ -16,14 +17,17 @@ export default function Nav() {
   const close = () => setOpen(false)
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled ? 'glass-nav shadow-[0_10px_40px_-20px_rgba(0,0,0,0.8)]' : 'bg-transparent'
       }`}
     >
       <nav className="wrap flex h-[68px] items-center justify-between">
-        <a href="#home" onClick={close} className="flex items-center gap-2.5" aria-label="Home">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-accent to-violet font-display text-[15px] font-bold text-white">
+        <a href="#home" onClick={close} className="group flex items-center gap-2.5" aria-label="Home">
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-accent to-violet font-display text-[15px] font-bold text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
             {SITE.initials}
           </span>
           <span className="font-display text-[15px] font-semibold tracking-tight text-txt">
@@ -35,14 +39,18 @@ export default function Nav() {
         </a>
 
         <div className="hidden items-center gap-8 lg:flex">
-          {NAV_LINKS.map((l) => (
-            <a
+          {NAV_LINKS.map((l, i) => (
+            <motion.a
               key={l.href}
               href={l.href}
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 + i * 0.06 }}
+              whileHover={{ y: -2 }}
               className="hover-line text-[13.5px] font-medium text-mute transition-colors hover:text-txt"
             >
               {l.label}
-            </a>
+            </motion.a>
           ))}
         </div>
 
@@ -53,7 +61,7 @@ export default function Nav() {
               download
               target="_blank"
               rel="noreferrer"
-              className="btn btn-ghost !px-5 !py-2.5 !text-[13.5px]"
+              className="btn btn-ghost shine-wrap !px-5 !py-2.5 !text-[13.5px]"
             >
               Resume
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -64,8 +72,9 @@ export default function Nav() {
             </a>
           </Magnet>
 
-          <button
+          <motion.button
             onClick={() => setOpen(!open)}
+            whileTap={{ scale: 0.9 }}
             className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-surface lg:hidden"
             aria-label="Toggle menu"
           >
@@ -74,12 +83,17 @@ export default function Nav() {
               <span className={`h-[2px] bg-txt transition-all ${open ? 'opacity-0' : ''}`} />
               <span className={`h-[2px] bg-txt transition-all ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
             </div>
-          </button>
+          </motion.button>
         </div>
       </nav>
 
       {open && (
-        <div className="border-t border-line bg-ink/95 backdrop-blur-xl lg:hidden">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="border-t border-line bg-ink/95 backdrop-blur-xl lg:hidden"
+        >
           <div className="wrap flex flex-col gap-1 py-4">
             {NAV_LINKS.map((l) => (
               <a
@@ -100,8 +114,8 @@ export default function Nav() {
               Download Resume
             </a>
           </div>
-        </div>
+        </motion.div>
       )}
-    </header>
+    </motion.header>
   )
 }

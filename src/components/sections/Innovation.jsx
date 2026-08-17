@@ -1,6 +1,7 @@
 import { FadeContent, AnimatedContent, ShinyText } from '../../components/reactbits'
 import { HACKATHON, DEFENCE } from '../../data/site'
 import { Section } from './shared'
+import { RandomShapes, DotMatrixBg } from '../fx'
 
 function Radar() {
   return (
@@ -30,6 +31,12 @@ export default function Innovation() {
       kicker="Innovation & Problem Solving"
       title="Building With Purpose"
       desc="Beyond courses — applying technology to real challenges through hackathons and hands-on concept work."
+      fx={
+        <div className="absolute inset-0 opacity-60">
+          <RandomShapes count={10} seed="innovation" />
+          <DotMatrixBg size={5} gap={44} color="rgba(94, 234, 212, 0.22)" speed={0.6} />
+        </div>
+      }
     >
       <div className="grid gap-6 lg:grid-cols-5">
         {/* -------- hackathon -------- */}

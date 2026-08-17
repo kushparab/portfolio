@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { Aurora, BlurText, Magnet, CountUp, DecryptedText } from './reactbits'
+import { Parallax, EntranceReveal, ShapeMorph } from './fx'
 import { SITE, STATS, MARQUEE_ITEMS } from '../data/site'
 
 const ROLES = ['AI/ML Developer', 'Computer Science Student', 'Future AI Researcher']
@@ -9,8 +10,8 @@ function ProfileCard({ children }) {
   const ref = useRef(null)
   const px = useMotionValue(0.5)
   const py = useMotionValue(0.5)
-  const rx = useSpring(useTransform(py, [0, 1], [7, -7]), { stiffness: 160, damping: 20 })
-  const ry = useSpring(useTransform(px, [0, 1], [-7, 7]), { stiffness: 160, damping: 20 })
+  const rx = useSpring(useTransform(py, [0, 1], [9, -9]), { stiffness: 160, damping: 20 })
+  const ry = useSpring(useTransform(px, [0, 1], [-9, 9]), { stiffness: 160, damping: 20 })
 
   return (
     <motion.div
@@ -43,7 +44,8 @@ export default function Hero() {
           speed={0.6}
           className="aurora-wrap"
         />
-        <div className="absolute inset-0 dot-grid opacity-40" />
+        <ShapeMorph />
+        <div className="absolute inset-0 dot-grid opacity-30" />
         <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-ink to-transparent" />
         <div className="absolute -left-40 top-24 h-96 w-96 rounded-full bg-accent/20 blur-[140px]" />
         <div className="absolute -right-32 bottom-10 h-96 w-96 rounded-full bg-violet/15 blur-[150px]" />
@@ -52,83 +54,95 @@ export default function Hero() {
       <div className="wrap grid min-h-screen items-center gap-16 pt-28 pb-20 lg:grid-cols-12 lg:pt-32">
         {/* ------------- left ------------- */}
         <div className="lg:col-span-7">
-          <div className="flex items-center gap-3 font-mono-code text-[13px] tracking-wide text-dim">
-            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-3 py-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="ping-slow absolute inline-flex h-2 w-2 rounded-full bg-teal" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-teal" />
+          <EntranceReveal delay={0.05}>
+            <div className="flex items-center gap-3 font-mono-code text-[13px] tracking-wide text-dim">
+              <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-3 py-1.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="ping-slow absolute inline-flex h-2 w-2 rounded-full bg-teal" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-teal" />
+                </span>
+                Open to AI/ML roles
               </span>
-              Open to AI/ML roles
-            </span>
-          </div>
+            </div>
+          </EntranceReveal>
 
-          <BlurText
-            text={SITE.name}
-            delay={40}
-            animateBy="chars"
-            direction="top"
-            threshold={0}
-            className="mt-7 font-display text-[clamp(3.2rem,9vw,6.4rem)] font-bold leading-[0.98] tracking-tight text-txt"
-            easing="easeOut"
-            stepDuration={0.14}
-          />
+          <EntranceReveal delay={0.15}>
+            <BlurText
+              text={SITE.name}
+              delay={40}
+              animateBy="chars"
+              direction="top"
+              threshold={0}
+              className="mt-7 font-display text-[clamp(3.2rem,9vw,6.4rem)] font-bold leading-[0.98] tracking-tight text-txt"
+              easing="easeOut"
+              stepDuration={0.14}
+            />
+          </EntranceReveal>
 
-          <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-            {ROLES.map((r, i) => (
-              <span key={r} className="flex items-center gap-3">
-                <span className="font-display text-lg font-medium text-txt/90 sm:text-xl">{r}</span>
-                {i < ROLES.length - 1 && (
-                  <span className="hidden h-1.5 w-1.5 rounded-full bg-gradient-to-r from-accent to-teal sm:block" />
-                )}
-              </span>
-            ))}
-          </p>
+          <EntranceReveal delay={0.3}>
+            <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+              {ROLES.map((r, i) => (
+                <span key={r} className="flex items-center gap-3">
+                  <span className="font-display text-lg font-medium text-txt/90 sm:text-xl">{r}</span>
+                  {i < ROLES.length - 1 && (
+                    <span className="hidden h-1.5 w-1.5 rounded-full bg-gradient-to-r from-accent to-teal sm:block" />
+                  )}
+                </span>
+              ))}
+            </p>
+          </EntranceReveal>
 
-          <p className="mt-6 max-w-xl text-[16.5px] leading-relaxed text-mute">{SITE.tagline}</p>
+          <EntranceReveal delay={0.4}>
+            <p className="mt-6 max-w-xl text-[16.5px] leading-relaxed text-mute">{SITE.tagline}</p>
+          </EntranceReveal>
 
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Magnet padding={60} magnetStrength={26}>
-              <a href="#projects" className="btn btn-primary">
-                View Projects
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </Magnet>
-            <Magnet padding={60} magnetStrength={26}>
-              <a href={SITE.resume} download target="_blank" rel="noreferrer" className="btn btn-ghost">
-                Download Resume
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-              </a>
-            </Magnet>
-            <Magnet padding={60} magnetStrength={26}>
-              <a href="#contact" className="btn btn-ghost">
-                Contact Me
-              </a>
-            </Magnet>
-          </div>
+          <EntranceReveal delay={0.5}>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <Magnet padding={60} magnetStrength={26}>
+                <a href="#projects" className="btn btn-primary shine-wrap">
+                  View Projects
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </Magnet>
+              <Magnet padding={60} magnetStrength={26}>
+                <a href={SITE.resume} download target="_blank" rel="noreferrer" className="btn btn-ghost shine-wrap">
+                  Download Resume
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                </a>
+              </Magnet>
+              <Magnet padding={60} magnetStrength={26}>
+                <a href="#contact" className="btn btn-ghost shine-wrap">
+                  Contact Me
+                </a>
+              </Magnet>
+            </div>
+          </EntranceReveal>
 
-          <div className="mt-12 grid max-w-lg grid-cols-4 divide-x divide-line rounded-2xl border border-line bg-panel/80 backdrop-blur">
-            {STATS.map((s) => (
-              <div key={s.label} className="px-3 py-4 text-center">
-                <div className="font-display text-2xl font-bold text-txt">
-                  <CountUp to={s.value} duration={2} separator="" />
-                  {s.suffix}
+          <EntranceReveal delay={0.6}>
+            <div className="mt-12 grid max-w-lg grid-cols-4 divide-x divide-line rounded-2xl border border-line bg-panel/80 backdrop-blur">
+              {STATS.map((s) => (
+                <div key={s.label} className="px-3 py-4 text-center">
+                  <div className="font-display text-2xl font-bold text-txt">
+                    <CountUp to={s.value} duration={2} separator="" />
+                    {s.suffix}
+                  </div>
+                  <div className="mt-1 text-[10.5px] font-medium uppercase tracking-wider text-dim">
+                    {s.label}
+                  </div>
                 </div>
-                <div className="mt-1 text-[10.5px] font-medium uppercase tracking-wider text-dim">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </EntranceReveal>
         </div>
 
         {/* ------------- right ------------- */}
-        <div className="relative lg:col-span-5">
+        <Parallax offset={26} className="relative lg:col-span-5" reverse>
           <div className="relative mx-auto max-w-md">
             <div className="absolute -inset-6 -z-10 rounded-[3rem] bg-gradient-to-br from-accent/15 via-violet/10 to-teal/10 blur-2xl" />
 
@@ -201,18 +215,18 @@ export default function Hero() {
               </div>
             </ProfileCard>
 
-            <div className="absolute -left-10 bottom-16 hidden rounded-xl border border-line bg-raised/95 px-4 py-3 shadow-xl sm:block">
+            <Parallax offset={18} className="absolute -left-10 bottom-16 hidden rounded-xl border border-line bg-raised/95 px-4 py-3 shadow-xl sm:block">
               <p className="font-mono-code text-[10px] uppercase tracking-wider text-dim">Focus</p>
               <p className="mt-1 font-display text-[13px] font-semibold text-txt">ML · CV · GenAI</p>
-            </div>
-            <div className="absolute -right-6 top-8 hidden rounded-xl border border-line bg-raised/95 px-4 py-3 shadow-xl sm:block">
+            </Parallax>
+            <Parallax offset={18} reverse className="absolute -right-6 top-8 hidden rounded-xl border border-line bg-raised/95 px-4 py-3 shadow-xl sm:block">
               <p className="font-mono-code text-[10px] uppercase tracking-wider text-dim">Status</p>
               <p className="mt-1 flex items-center gap-1.5 font-display text-[13px] font-semibold text-txt">
                 <span className="h-1.5 w-1.5 rounded-full bg-teal" /> Learning
               </p>
-            </div>
+            </Parallax>
           </div>
-        </div>
+        </Parallax>
       </div>
 
       {/* ------------- keyword marquee ------------- */}

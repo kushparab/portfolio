@@ -1,6 +1,7 @@
 import { FadeContent } from '../../components/reactbits'
 import { SKILLS } from '../../data/site'
 import { Section } from './shared'
+import { DotMatrixBg } from '../fx'
 
 const ORDER = [
   ['programming', 'ai', 'web'],
@@ -16,6 +17,11 @@ export default function Skills() {
       kicker="Toolbox"
       title="Skills & Technologies"
       desc="The languages, frameworks, and tools I use to design, train, build, and ship intelligent applications."
+      fx={
+        <div className="absolute inset-0 opacity-40">
+          <DotMatrixBg size={7} gap={34} color="rgba(183, 139, 255, 0.35)" speed={0.7} />
+        </div>
+      }
     >
       <div className="grid gap-6 md:grid-cols-3">
         {ORDER.flat().map((key, idx) => {

@@ -1,14 +1,17 @@
 import { FadeContent, Magnet, StarBorder } from '../../components/reactbits'
 import { SITE } from '../../data/site'
+import { Parallax, ShapeMorph } from '../fx'
 
 export default function Explore() {
   return (
     <section id="code" className="section-pad relative">
       <div className="wrap">
-        <div className="relative overflow-hidden rounded-[2rem] border border-line-strong bg-gradient-to-br from-accent/12 via-panel to-teal/8 p-8 sm:p-12">
-          <div className="absolute inset-0 dot-grid opacity-20" />
-          <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-accent/15 blur-[100px]" />
-          <div className="absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-teal/10 blur-[100px]" />
+        <Parallax offset={30}>
+          <div className="relative overflow-hidden rounded-[2rem] border border-line-strong bg-gradient-to-br from-accent/12 via-panel to-teal/8 p-8 sm:p-12">
+            <div className="absolute inset-0 dot-grid opacity-20" />
+            <ShapeMorph className="opacity-60" />
+            <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-accent/15 blur-[100px]" />
+            <div className="absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-teal/10 blur-[100px]" />
 
           <div className="relative">
             <FadeContent threshold={0.2} duration={700}>
@@ -73,7 +76,8 @@ export default function Explore() {
               </a>
             </Magnet>
           </div>
-        </div>
+          </div>
+        </Parallax>
       </div>
     </section>
   )

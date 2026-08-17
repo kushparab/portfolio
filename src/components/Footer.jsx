@@ -1,5 +1,6 @@
 import { SITE } from '../data/site'
 import { DecryptedText } from './reactbits'
+import { RandomShapes, EntranceReveal } from './fx'
 
 export default function Footer() {
   const socials = [
@@ -21,8 +22,10 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="relative border-t border-line bg-panel/40">
-      <div className="wrap py-14">
+    <footer className="relative border-t border-line bg-panel/40 overflow-hidden">
+      <RandomShapes count={8} seed="footer" className="opacity-50" />
+      <div className="wrap relative py-14">
+        <EntranceReveal>
         <div className="flex flex-col items-center gap-8 text-center">
           <div className="flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-accent to-violet font-display text-lg font-bold text-white">
@@ -69,10 +72,11 @@ export default function Footer() {
             <span>© 2026 {SITE.name}. All rights reserved.</span>
             <span className="hidden h-1 w-1 rounded-full bg-dim sm:block" />
             <span>
-              Crafted with React, Tailwind & <span className="text-accent">ReactBits</span>
+              Crafted with React, Tailwind, <span className="text-accent">ReactBits</span> & anime.js
             </span>
           </div>
         </div>
+        </EntranceReveal>
       </div>
     </footer>
   )

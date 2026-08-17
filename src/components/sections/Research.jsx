@@ -1,6 +1,7 @@
 import { FadeContent, AnimatedContent } from '../../components/reactbits'
 import { RESEARCH, BUILDING } from '../../data/site'
 import { Section } from './shared'
+import { DotMatrixBg, RandomShapes } from '../fx'
 
 export default function Research() {
   return (
@@ -10,6 +11,12 @@ export default function Research() {
       kicker="Directions"
       title="AI Research Interests"
       desc="Kush is interested in exploring how intelligent systems can become more capable, reliable, autonomous, and useful in real-world environments."
+      fx={
+        <div className="absolute inset-0 opacity-40">
+          <DotMatrixBg size={6} gap={38} color="rgba(125, 140, 255, 0.3)" speed={0.9} />
+          <RandomShapes count={6} seed="research" className="opacity-60" />
+        </div>
+      }
     >
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {RESEARCH.map((r, i) => (

@@ -1,6 +1,7 @@
 import { FadeContent } from '../../components/reactbits'
 import { ACHIEVEMENT_CATEGORIES } from '../../data/site'
 import { Section } from './shared'
+import { DotMatrixBg } from '../fx'
 
 export default function Credentials() {
   return (
@@ -10,6 +11,11 @@ export default function Credentials() {
       kicker="Proof of Work"
       title="Certifications & Achievements"
       desc="Verified milestones only — details will be added here as credentials and results come through."
+      fx={
+        <div className="absolute inset-0 opacity-40">
+          <DotMatrixBg size={6} gap={42} color="rgba(94, 234, 212, 0.28)" speed={0.6} />
+        </div>
+      }
     >
       <div className="grid gap-6 lg:grid-cols-2">
         {/* ---------- certifications ---------- */}

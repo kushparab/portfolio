@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { FadeContent, AnimatedContent, Magnet } from '../../components/reactbits'
 import { SITE } from '../../data/site'
 import { Section } from './shared'
+import { RandomShapes, DotMatrixBg } from '../fx'
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
@@ -20,6 +21,12 @@ export default function Contact() {
       desc="Have an interesting project, research idea, collaboration opportunity, or internship opportunity? I'd love to connect and explore what we can build together."
       center
       className="!pb-24"
+      fx={
+        <div className="absolute inset-0 opacity-50">
+          <RandomShapes count={12} seed="contact" />
+          <DotMatrixBg size={5} gap={46} color="rgba(125, 140, 255, 0.2)" speed={0.5} />
+        </div>
+      }
     >
       <div className="mx-auto grid max-w-4xl gap-6 lg:grid-cols-5">
         <AnimatedContent distance={40} direction="vertical" threshold={0.2} className="lg:col-span-2">

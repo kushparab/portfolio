@@ -20,10 +20,12 @@ export function Section({
   children,
   className = '',
   center = false,
+  fx,
 }) {
   return (
     <section id={id} className={`section-pad relative ${className}`}>
-      <div className="wrap">
+      {fx}
+      <div className="wrap relative">
         <div className={center ? 'text-center flex flex-col items-center' : ''}>
           <FadeContent threshold={0.15} duration={700}>
             <p className="kicker flex items-center gap-3">
